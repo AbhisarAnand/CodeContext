@@ -36,11 +36,11 @@ If the project directory is not specified, the script will use the current direc
 
 - Gather code from the current directory for a Python project:
     ```sh
-    ./gather_code.sh . python
+    ./CodeContext.sh . python
     ```
 - Gather code from a specific directory for a Flutter project:
     ```sh
-    ./gather_code.sh /path/to/your/flutter/project flutter
+    ./CodeContext.sh /path/to/your/flutter/project flutter
     ```
 
 ### Output
