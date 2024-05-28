@@ -16,7 +16,7 @@ To use this script, follow the instructions below.
 1. Save the script to a file, e.g., `CodeContext.sh`.
 2. Make the script executable:
     ```sh
-    chmod +x gather_code.sh
+    chmod +x CodeContext.sh
     ```
 
 ### Running the Script
