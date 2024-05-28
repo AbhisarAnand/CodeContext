@@ -47,16 +47,16 @@ If the project directory is not specified, the script will use the current direc
 
 The output is a file named `code_context.txt` in the same directory where the script is executed. The file contains the paths and contents of all relevant files. Here is an example:
 - Example Directory Structure
-Assume the following directory structure for a Python project:
-```
-project/
-├── main.py
-├── module/
-│   ├── __init__.py
-│   └── utils.py
-├── README.md
-└── requirements.txt
-```
+    Assume the following directory structure for a Python project:
+    ```
+    project/
+    ├── main.py
+    ├── module/
+    │   ├── __init__.py
+    │   └── utils.py
+    ├── README.md
+    └── requirements.txt
+    ```
 
 - Example File Contents
  * `main.py`:
