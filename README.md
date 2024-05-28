@@ -59,42 +59,42 @@ The output is a file named `code_context.txt` in the same directory where the sc
     ```
 
 - Example File Contents
- * `main.py`:
-    ```python
-    print("Hello, World!")
-    ```
- * `module/utils.py`:
-    ```python
-    def add(a, b):
-        return a + b
-    ```
- * `README.md`:
-    ```markdown
-    # Project Title
-    This is a sample project.
-    ```
- * `requirements.txt`
-    ```
-    requests
-    numpy
-    ```
+    - `main.py`:
+        ```python
+        print("Hello, World!")
+        ```
+    - `module/utils.py`:
+        ```python
+        def add(a, b):
+            return a + b
+        ```
+    - `README.md`:
+        ```markdown
+        # Project Title
+        This is a sample project.
+        ```
+    - `requirements.txt`
+        ```
+        requests
+        numpy
+        ```
 - Resulting `code_context.txt`
-The code_context.txt file will look like this:
-    ```
-    ### ./main.py ###
-    print("Hello, World!")
+    - The code_context.txt file will look like this:
+        ```
+        ### ./main.py ###
+        print("Hello, World!")
 
-    ### ./module/__init__.py ###
+        ### ./module/__init__.py ###
 
-    ### ./module/utils.py ###
-    def add(a, b):
-        return a + b
+        ### ./module/utils.py ###
+        def add(a, b):
+            return a + b
 
-    ### ./README.md ###
-    # Project Title
-    This is a sample project.
+        ### ./README.md ###
+        # Project Title
+        This is a sample project.
 
-    ### ./requirements.txt ###
-    requests
-    numpy
-    ```
+        ### ./requirements.txt ###
+        requests
+        numpy
+        ```
