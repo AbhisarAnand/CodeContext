@@ -46,17 +46,19 @@ rm -f "$OUTPUT_FILE"
 
 IFS=',' read -r -a extensions_array <<< "$FILE_EXTENSIONS"
 
-find_command="find \"$PROJECT_DIR\" -type f \\("
-for ext in "${extensions_array[@]}"; do
-    find_command+=" -name \"$ext\" -o"
-done
-find_command="${find_command::-2}\\)"
+find_args=()
 
-eval $find_command | while read -r file; do
+for ext in "${extensions_array[@]}"; do
+    find_args+=("-name" "$ext" "-o")
+done
+
+unset 'find_args[${#find_args[@]}-1]'
+
+find_command=("find" "$PROJECT_DIR" "-type" "f" "(" "${find_args[@]}" ")")
+
+"${find_command[@]}" | while read -r file; do
     echo "### $file ###" >> "$OUTPUT_FILE"
-    
     cat "$file" >> "$OUTPUT_FILE"
-    
     echo -e "\n" >> "$OUTPUT_FILE"
 done
 
