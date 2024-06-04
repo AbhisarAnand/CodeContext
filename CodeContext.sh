@@ -14,6 +14,18 @@ get_file_extensions() {
         java)
             echo "*.java,*.xml,*.txt,*.md"
             ;;
+        html)
+            echo "*.html,*.css,*.js,*.txt,*.md"
+            ;;
+        css)
+            echo "*.css,*.html,*.js,*.txt,*.md"
+            ;;
+        c)
+            echo "*.c,*.h,*.txt,*.md"
+            ;;
+        cpp)
+            echo "*.cpp,*.h,*.txt,*.md"
+            ;;
         *)
             echo ""
             ;;
