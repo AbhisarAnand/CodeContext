@@ -15,7 +15,7 @@ get_file_extensions() {
             echo "*.java,*.xml,*.txt,*.md"
             ;;
         html)
-            echo "*.html,*.css,*.js,*.txt,*.md"
+            echo "*.html,*.css,*.js,*.txt,*.md,*.json"
             ;;
         css)
             echo "*.css,*.html,*.js,*.txt,*.md"
