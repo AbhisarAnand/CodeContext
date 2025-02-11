@@ -39,11 +39,12 @@ else
 fi
 
 if [ -z "$2" ]; then
-    echo "Usage: $0 <project_directory> <language>"
+    echo "Usage: $0 <project_directory> <language> [output_mode: text|clipboard]"
     exit 1
 fi
 
 LANGUAGE="$2"
+OUTPUT_MODE="${3:-clipboard}"
 
 FILE_EXTENSIONS=$(get_file_extensions "$LANGUAGE")
 
@@ -68,10 +69,26 @@ unset 'find_args[${#find_args[@]}-1]'
 
 find_command=("find" "$PROJECT_DIR" "-type" "f" "(" "${find_args[@]}" ")")
 
+TEMP_FILE=$(mktemp)
+
 "${find_command[@]}" | while read -r file; do
-    echo "### $file ###" >> "$OUTPUT_FILE"
-    cat "$file" >> "$OUTPUT_FILE"
-    echo -e "\n" >> "$OUTPUT_FILE"
+    echo "### $file ###" >> "$TEMP_FILE"
+    cat "$file" >> "$TEMP_FILE"
+    echo -e "\n" >> "$TEMP_FILE"
 done
 
-echo "Code context has been gathered in $OUTPUT_FILE"
+if [ "$OUTPUT_MODE" = "text" ]; then
+    mv "$TEMP_FILE" "$OUTPUT_FILE"
+    echo "Code context has been gathered in $OUTPUT_FILE"
+else
+    if command -v pbcopy &> /dev/null; then
+        cat "$TEMP_FILE" | pbcopy
+        echo "Code context has been copied to the clipboard."
+    else
+        echo "Clipboard functionality (pbcopy) is not available. Outputting to $OUTPUT_FILE instead."
+        mv "$TEMP_FILE" "$OUTPUT_FILE"
+    fi
+fi
+
+rm -f "$TEMP_FILE"
+
