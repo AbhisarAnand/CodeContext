@@ -11,6 +11,9 @@ get_file_extensions() {
         javascript)
             echo "*.js,*.jsx,*.json,*.html,*.css,*.txt,*.md"
             ;;
+        meteor)
+            echo "*.js,*.jsx,*.ts,*.tsx,*.json,*.html,*.css,*.md,*.txt,*.yaml,*.yml,*.sh,*.bash,.meteor,.eslintrc,.prettierrc,.babelrc,.eslintignore,.prettierignore"
+            ;;
         java)
             echo "*.java,*.xml,*.txt,*.md"
             ;;
