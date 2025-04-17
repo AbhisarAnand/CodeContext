@@ -1,71 +1,97 @@
 # CodeContext
 
-This shell script explores a specified project directory and gathers all the code from relevant files into a single text file called `code_context.txt` or copies it directly to the clipboard. The script supports multiple programming languages by allowing the user to specify the language, and it automatically determines the appropriate file extensions to include.
+CodeContext is a shell script that scans a project directory and collects all relevant code files into a single output (`code_context.txt`) or copies them directly to your clipboard. It supports various programming languages and automatically filters files based on language-specific extensions.
 
-## Usage
+---
 
-To use this script, follow the instructions below.
+## 🚀 Installation
 
-### Prerequisites
+To make `CodeContext` accessible from anywhere, use the included `install.sh` script.
 
-- Ensure you have a Unix-like operating system with `bash` installed.
-- Make sure you have the necessary permissions to execute the script and read files in the specified directory.
+### Steps:
 
-### Setup
+1. Clone or download this repository.
+2. Make the installer executable:
+   ```sh
+   chmod +x install.sh
+   ```
+3. Run the installer:
+   ```sh
+   ./install.sh
+   ```
+   This will:
+   - Make the `CodeContext.sh` script executable.
+   - Copy it to `/usr/local/bin/CodeContext`.
 
-1. Save the script to a file, e.g., `CodeContext.sh`.
-2. Make the script executable:
-    ```sh
-    chmod +x CodeContext.sh
-    ```
+> If `/usr/local/bin` requires root permission:
+> ```sh
+> sudo ./install.sh
+> ```
 
-### Running the Script
+You can now run `CodeContext` as a command globally.
 
-The script takes three arguments:
-1. The project directory to explore.
-2. The programming language of the project.
-3. (Optional) The output mode: `text` or `clipboard`.
+---
 
-- **`text`**: Outputs the code context to `code_context.txt`.
-- **`clipboard`** (default): Copies the code context directly to the clipboard.
+## 🧠 Usage
 
-If the project directory is not specified, the script will use the current directory. The supported languages and their corresponding file extensions are:
-
-- **python**: `*.py,*.txt,*.md`
-- **flutter**: `*.dart,*.yaml,*.txt,*.md`
-- **javascript**: `*.js,*.jsx,*.json,*.html,*.css,*.txt,*.md`
-- **java**: `*.java,*.xml,*.txt,*.md`
-- **html**: `*.html,*.css,*.js,*.txt,*.md,*.json`
-- **css**: `*.css,*.html,*.js,*.txt,*.md`
-- **c**: `*.c,*.h,*.txt,*.md`
-- **cpp**: `*.cpp,*.h,*.txt,*.md`
-
-#### Example Commands
-
-- Gather code from the current directory for a Python project and copy to clipboard:
-    ```sh
-    ./CodeContext.sh . python
-    ```
-- Gather code from a specific directory for a Flutter project and output to a text file:
-    ```sh
-    ./CodeContext.sh /path/to/your/flutter/project flutter text
-    ```
-- Gather code and explicitly copy to clipboard:
-    ```sh
-    ./CodeContext.sh /path/to/project javascript clipboard
-    ```
-
-### Output
-
-The output will be either:
-- A file named `code_context.txt` in the same directory where the script is executed (if `text` mode is used).
-- Directly copied to the clipboard (if `clipboard` mode is used).
-
-#### Example Directory Structure
-
-Assume the following directory structure for a Python project:
+```sh
+CodeContext <project_directory> <language> [output_mode: text|clipboard]
 ```
-project/
+
+- `<project_directory>` – The directory to scan (defaults to current `.` if not specified).
+- `<language>` – Programming language to filter relevant files.
+- `[output_mode]` – Optional: `text` or `clipboard` (default is `clipboard`).
+
+---
+
+## 🗂 Supported Languages
+
+| Language    | File Extensions |
+|-------------|-----------------|
+| python      | `.py`, `.txt`, `.md`, `.html`, `Dockerfile` |
+| flutter     | `.dart`, `.yaml`, `.txt`, `.md` |
+| javascript  | `.js`, `.jsx`, `.json`, `.html`, `.css`, `.txt`, `.md` |
+| meteor      | `.js`, `.jsx`, `.ts`, `.tsx`, `.json`, `.html`, `.css`, `.md`, `.txt`, `.yaml`, `.yml`, `.sh`, `.bash`, `.meteor`, `.eslintrc`, `.prettierrc`, `.babelrc`, `.eslintignore`, `.prettierignore` |
+| java        | `.java`, `.xml`, `.txt`, `.md` |
+| html        | `.html`, `.css`, `.js`, `.txt`, `.md`, `.json` |
+| css         | `.css`, `.html`, `.js`, `.txt`, `.md` |
+| c           | `.c`, `.h`, `.txt`, `.md` |
+| cpp         | `.cpp`, `.h`, `.txt`, `.md` |
+
+---
+
+## 📌 Examples
+
+- Copy Python project code from the current directory to clipboard:
+  ```sh
+  CodeContext . python
+  ```
+
+- Save code context from a Flutter project to a file:
+  ```sh
+  CodeContext /path/to/project flutter text
+  ```
+
+- Copy JavaScript project code from any directory:
+  ```sh
+  CodeContext /some/project javascript clipboard
+  ```
+
+---
+
+## 📤 Output
+
+Depending on the mode:
+
+- **text** → Creates `code_context.txt` in the working directory.
+- **clipboard** → Copies the result directly using `pbcopy` (macOS).
+
+---
+
+## 🧾 Sample Project Structure
+
+```
+my-python-project/
 ├── main.py
 ├── module/
 │   ├── __init__.py
@@ -74,31 +100,7 @@ project/
 └── requirements.txt
 ```
 
-#### Example File Contents
-
-- `main.py`:
-    ```python
-    print("Hello, World!")
-    ```
-- `module/utils.py`:
-    ```python
-    def add(a, b):
-        return a + b
-    ```
-- `README.md`:
-    ```markdown
-    # Project Title
-    This is a sample project.
-    ```
-- `requirements.txt`
-    ```
-    requests
-    numpy
-    ```
-
-#### Resulting `code_context.txt`
-
-If outputted to a file, the `code_context.txt` will look like this:
+**Sample Output (code_context.txt):**
 ```
 ### ./main.py ###
 print("Hello, World!")
@@ -118,5 +120,6 @@ requests
 numpy
 ```
 
-If using the `clipboard` mode, the same content will be available in your clipboard, ready to paste anywhere.
+If using clipboard mode, this will be placed in your system clipboard, ready to paste.
 
+---
