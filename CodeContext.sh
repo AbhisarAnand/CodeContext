@@ -3,7 +3,7 @@
 get_file_extensions() {
     case "$1" in
         python)
-            echo "*.py,*.txt,*.md"
+            echo "*.py,*.txt,*.md,*.html,Dockerfile"
             ;;
         flutter)
             echo "*.dart,*.yaml,*.txt,*.md"
